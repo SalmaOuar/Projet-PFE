@@ -22,4 +22,13 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function sujet()
+    {
+        return $this->hasOne(SujetPFE::class, 'user_id');
+    }
+    public function sujetsEncadres()
+    {
+        return $this->hasMany(SujetPFE::class, 'encadrant_id');
+    }
 }

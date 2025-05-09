@@ -9,7 +9,7 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/iconepfe.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -75,7 +75,7 @@
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="blog.html">Blog</a></li> -->
-              <li><a href="contact.html">Contact</a></li>
+             <!-- <li><a href="contact.html">Contact</a></li>-->
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
           </nav>

@@ -3,8 +3,9 @@
 @section('content')
 <style>
     body {
-        background: linear-gradient(135deg, rgb(24, 234, 136), #000000);
-        min-height: 100vh;
+        background: url("{{ asset('assets/img/sujet.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        min-height: 150vh;
     }
 
     .sujets-wrapper {

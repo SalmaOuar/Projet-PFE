@@ -12,7 +12,10 @@ class AffectationController extends Controller
      */
     public function index()
     {
-        //
+        $sujets = \App\Models\SujetPFE::whereNull('encadrant_id')->with('etudiant')->get();
+        $encadrants = \App\Models\User::where('role', 'encadrant')->get();
+    
+        return view('admin.affectations.index', compact('sujets', 'encadrants'));
     }
 
     /**
@@ -28,7 +31,16 @@ class AffectationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'sujet_id' => 'required|exists:sujet_p_f_e_s,id',
+            'encadrant_id' => 'required|exists:users,id',
+        ]);
+    
+        $sujet = \App\Models\SujetPFE::findOrFail($request->sujet_id);
+        $sujet->encadrant_id = $request->encadrant_id;
+        $sujet->save();
+    
+        return redirect()->back()->with('success', 'Sujet affecté avec succès !');
     }
 
     /**

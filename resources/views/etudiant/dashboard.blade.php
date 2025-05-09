@@ -3,7 +3,11 @@
 @section('content')
 <style>
     body {
-        background: linear-gradient(to right, #38b2ac, #0f172a);
+        background-image: url("{{ asset('assets/img/student.jpg') }}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
         min-height: 100vh;
         color: #fff;
     }
@@ -12,9 +16,9 @@
         max-width: 1000px;
         margin: 50px auto;
         padding: 30px;
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: rgba(0, 0, 0, 0.7); 
         border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
     .dashboard-wrapper h2 {
@@ -30,7 +34,7 @@
     }
 
     .card-custom {
-        background-color: rgba(255, 255, 255, 0.07);
+        background-color: rgba(24, 23, 23, 0.08);
         border: none;
     }
 
@@ -58,6 +62,10 @@
         background-color: #dc3545;
         color: #fff;
     }
+
+    .card-header h5 {
+        color: #eee;
+    }
 </style>
 
 <div class="dashboard-wrapper">
@@ -77,7 +85,7 @@
         </div>
         <div class="col-md-4">
             @if($rapport)
-            <a href="{{ asset('storage/rapports/' . $rapport->fichier) }}" class="btn btn-dark" target="_blank">
+            <a href="{{ asset('storage/' . $rapport->fichier) }}" class="btn btn-dark" target="_blank">
                 📄 Voir le rapport final
             </a>
             @else
@@ -86,7 +94,6 @@
             </a>
             @endif
         </div>
-
     </div>
 
     @if(isset($sujet))
@@ -117,7 +124,7 @@
         </div>
         <div class="card-body">
             <p><strong>Fichier :</strong>
-                <a href="{{ asset('storage/rapports/' . $rapport->fichier) }}" class="btn btn-outline-light" target="_blank">
+                <a href="{{ asset('storage/' . $rapport->fichier) }}" class="btn btn-outline-light" target="_blank">
                     📄 Voir le rapport
                 </a>
             </p>
@@ -125,6 +132,5 @@
         </div>
     </div>
     @endif
-
 </div>
 @endsection

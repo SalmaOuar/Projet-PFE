@@ -91,4 +91,14 @@ public function uploadRapport(Request $request)
     return back()->with('success', 'Rapport soumis avec succès.');
 }
 
+
+public function showUploadForm()
+{
+    $sujet = SujetPFE::where('user_id', Auth::id())->latest()->first();
+    $rapport = $sujet?->rapport;
+
+    return view('etudiant.upload_rapport', compact('sujet', 'rapport'));
+}
+
+
 }

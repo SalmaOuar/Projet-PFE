@@ -3,18 +3,24 @@
 @section('content')
 <style>
     body {
-        background: linear-gradient(135deg, #1abc9c, #0f2027);
+        background-image: url("{{ asset('assets/img/student.jpg') }}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
         min-height: 100vh;
         color: #fff;
+        font-family: 'Segoe UI', sans-serif;
     }
 
     .upload-wrapper {
         max-width: 600px;
         margin: 60px auto;
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: rgba(0, 0, 0, 0.4); /* assombrit le fond */
+        backdrop-filter: blur(10px); /* effet de flou */
         border-radius: 15px;
-        padding: 40px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        padding: 60px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
     .upload-wrapper h2 {
@@ -24,8 +30,8 @@
         color: #fff;
     }
 
-    .form-label {
-        font-weight: 600;
+    .form-label, .upload-wrapper p, .upload-wrapper a, .upload-wrapper h5 {
+        color: #fff;
     }
 
     .btn-primary {
@@ -41,7 +47,7 @@
         display: block;
         margin-top: 20px;
         text-align: center;
-        color:rgb(0, 0, 0);
+        color: #fff;
         font-weight: bold;
         text-decoration: none;
     }
@@ -50,7 +56,11 @@
         text-decoration: underline;
     }
 
+    .alert {
+        font-weight: 500;
+    }
 </style>
+
 
 <div class="upload-wrapper">
     <h2>📤 Dépôt du Rapport Final</h2>
@@ -79,6 +89,17 @@
         <button type="submit" class="btn btn-primary w-100">
             ✅ Envoyer le rapport
         </button>
+
+        @if($rapport)
+    <div class="mt-4 text-center">
+        <h5 class="mb-3">📎 Rapport déjà soumis</h5>
+        <a href="{{ asset('storage/' . $rapport->fichier) }}" class="btn btn-outline-light" target="_blank">
+            📄 Voir le rapport
+        </a>
+        <p class="mt-2"><strong>Date de dépôt :</strong> {{ \Carbon\Carbon::parse($rapport->dateDepot)->format('d/m/Y') }}</p>
+    </div>
+@endif
+
     </form>
 
     <a href="{{ route('etudiant.dashboard') }}" class="back-link">← Retour au tableau de bord</a>

@@ -5,8 +5,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SujetController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\EncadrantController;
 use App\Http\Controllers\Admin\AffectationController;
-
+use App\Http\Controllers\EvaluationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -113,3 +114,26 @@ Route::get('/admin/sujets/{id}/affecter', [SujetController::class, 'formAffecter
 Route::get('/welcome', function () {
     return view('welcome');
 })->middleware('auth')->name('welcome');
+
+Route::middleware(['auth'])->prefix('etudiant')->name('etudiant.')->group(function () {
+    Route::get('/rapport', [EtudiantController::class, 'showUploadForm'])->name('rapport.upload');
+    Route::post('/rapport', [EtudiantController::class, 'uploadRapport'])->name('rapport.store');
+});
+
+Route::get('/encadrant/dashboard', [EncadrantController::class, 'dashboard'])->name('encadrant.dashboard');
+
+Route::get('/admin/affectations', [AffectationController::class, 'index'])->name('admin.affectations.index');
+
+Route::post('/admin/affectations', [AffectationController::class, 'store'])->name('admin.affectations.store');
+
+Route::prefix('encadrant')->middleware(['auth'])->group(function () {
+    Route::get('/evaluation/{sujet}', [EvaluationController::class, 'form'])->name('encadrant.evaluation.form');
+    Route::post('/evaluation/{sujet}', [EvaluationController::class, 'store'])->name('encadrant.evaluation.store');
+});
+
+Route::post('/toggle-darkmode', function () {
+    session(['dark_mode' => !session('dark_mode', false)]);
+    return back();
+})->name('toggle.darkmode');
+
+

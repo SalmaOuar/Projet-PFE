@@ -18,8 +18,11 @@ class SujetPFE extends Model
     }
 
     public function rapport()
-{
-    return $this->hasOne(Rapport::class, 'sujet_id');
-}
-
+    {
+        return $this->hasOne(Rapport::class, 'sujet_id');
+    }
+    public function encadrant()
+    {
+        return $this->belongsTo(User::class, 'encadrant_id');
+    }
 }
