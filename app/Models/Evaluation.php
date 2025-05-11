@@ -12,4 +12,10 @@ class Evaluation extends Model
         'note',
         'commentaire',
     ];
+
+    public function sujet()
+{
+    return $this->belongsTo(SujetPFE::class, 'sujet_id');
+}
+
 }

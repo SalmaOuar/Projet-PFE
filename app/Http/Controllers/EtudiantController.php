@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\SujetPFE;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use App\Models\Rapport;
 
@@ -41,8 +42,9 @@ class EtudiantController extends Controller
 
     if ($sujet) {
         $rapport = Rapport::where('sujet_id', $sujet->id)->latest()->first();
+        $evaluation = Evaluation::where('sujet_id', $sujet->id)->first();
     }
-    return view('etudiant.dashboard', compact('sujet', 'rapport'));
+    return view('etudiant.dashboard', compact('sujet', 'rapport' , 'evaluation'));
 }
 
 public function etatProjet()

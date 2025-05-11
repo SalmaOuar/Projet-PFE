@@ -16,7 +16,7 @@
         max-width: 1000px;
         margin: 50px auto;
         padding: 30px;
-        background-color: rgba(0, 0, 0, 0.7); 
+        background-color: rgba(0, 0, 0, 0.8);
         border-radius: 15px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
@@ -65,6 +65,17 @@
 
     .card-header h5 {
         color: #eee;
+    }
+
+    .card-custom .note {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #20c997;
+    }
+
+    .card-custom .commentaire {
+        font-style: italic;
+        color: #ddd;
     }
 </style>
 
@@ -117,6 +128,7 @@
     <div class="alert alert-warning text-center mt-4">Aucun sujet soumis pour le moment.</div>
     @endif
 
+
     @if(isset($rapport))
     <div class="card card-custom mt-4">
         <div class="card-header">
@@ -132,5 +144,18 @@
         </div>
     </div>
     @endif
+
+    @if(isset($evaluation))
+    <div class="card card-custom mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">✅ Évaluation reçue</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Note :</strong> {{ $evaluation->note }} / 20</p>
+            <p><strong>Commentaire :</strong> {{ $evaluation->commentaire }}</p>
+        </div>
+    </div>
+    @endif
+
 </div>
 @endsection

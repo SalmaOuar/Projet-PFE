@@ -25,4 +25,11 @@ class SujetPFE extends Model
     {
         return $this->belongsTo(User::class, 'encadrant_id');
     }
+
+    public function evaluation()
+{
+    return $this->hasOne(Evaluation::class, 'sujet_id');
+}
+
+    
 }
