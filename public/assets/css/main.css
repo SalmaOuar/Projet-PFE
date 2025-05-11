@@ -1325,6 +1325,19 @@ section,
 .clients .client-logo:hover img {
   transform: scale(1.1);
 }
+.clients .client-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.clients .client-role {
+  margin-top: 15px;
+  font-weight: 600;
+  color: var(--default-color);
+  font-size: 1.1rem;
+}
 
 /*--------------------------------------------------------------
 # Skills Section
